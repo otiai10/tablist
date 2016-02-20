@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
+import Tab from './Tab'
 
 class TabList extends Component {
   render() {
     let list = [];
     for (let i in this.props.tabs) {
-      console.log(this.props.tabs[i]);
-      list.push(<li key={i}>{this.props.tabs[i].url}</li>);
+      list.push(<Tab key={i} tab={this.props.tabs[i]} />);
     }
-    return <ul>{list}</ul>;
+    return <table><tbody>{list}</tbody></table>;
   }
 }
 export default TabList;
