@@ -7,7 +7,9 @@ class Root extends Component {
   constructor(props) {
     super(props);
     this.state = {tabs: [], output: '', opacity: 0}
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({
+      url: ['http://*/*', 'https://*/*']
+    }, (tabs) => {
       this.setState({tabs: tabs});
     });
   }
