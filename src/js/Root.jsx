@@ -24,7 +24,7 @@ class Root extends Component {
                 <button className="button" onClick={this.removeDup.bind(this)}>Remove Duplicated URL</button>
               </div>
             </div>
-            <TabList rem={this.remove.bind(this)} tabs={this.state.tabs} />
+            <TabList com={this.comment.bind(this)} rem={this.remove.bind(this)} tabs={this.state.tabs} />
           </div>
           <div className="column is-4">
             <div className="columns">
@@ -108,6 +108,10 @@ class Root extends Component {
   }
   remove(i) {
     this.state.tabs.splice(i, 1);
+    this.setState({tabs: this.state.tabs});
+  }
+  comment(i, comment) {
+    this.state.tabs[i].comment = comment;
     this.setState({tabs: this.state.tabs});
   }
 }

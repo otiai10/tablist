@@ -5,7 +5,7 @@ class TabList extends Component {
   render() {
     let list = [];
     for (let i in this.props.tabs) {
-      list.push(<Tab key={i} seq={i} tab={this.props.tabs[i]} rem={this.props.rem} />);
+      list.push(<Tab key={i} seq={i} tab={this.props.tabs[i]} com={this.props.com} rem={this.props.rem} />);
     }
     return <table><tbody>{list}</tbody></table>;
   }
