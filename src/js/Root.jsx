@@ -13,49 +13,54 @@ class Root extends Component {
   }
   render() {
     return (
-      <div className="columns">
-        <div className="column is-8">
-          <div className="columns">
-            <div className="column is-12">
-              <button className="button" onClick={this.removeDup.bind(this)}>Remove Duplicated URL</button>
+      <div className="content">
+        <header style={{marginTop: '12px'}}>
+          <h1 className="title">Tab Archive</h1>
+        </header>
+        <div className="columns">
+          <div className="column is-8">
+            <div className="columns">
+              <div className="column is-12">
+                <button className="button" onClick={this.removeDup.bind(this)}>Remove Duplicated URL</button>
+              </div>
             </div>
+            <TabList tabs={this.state.tabs} />
           </div>
-          <TabList tabs={this.state.tabs} />
-        </div>
-        <div className="column is-4">
-          <div className="columns">
-            <div className="column is-12">
-              <button className="button" onClick={this.toMarkdown.bind(this)}>Get Markdown</button>
-              { (this.state.output == '') ? null : <button className="button" onClick={this.clipcopy.bind(this)}>
-                  <i className="fa fa-paperclip"></i>
-                </button> }
+          <div className="column is-4">
+            <div className="columns">
+              <div className="column is-12">
+                <button className="button" onClick={this.toMarkdown.bind(this)}>Get Markdown</button>
+                { (this.state.output == '') ? null : <button className="button" onClick={this.clipcopy.bind(this)}>
+                    <i className="fa fa-paperclip"></i>
+                  </button> }
+              </div>
             </div>
-          </div>
-          <div
-            ref="note"
-            className="notification is-primary"
-            style={{
-              opacity: this.state.opacity,
-              display: (this.state.copied) ? 'inherit' : 'none'
-            }}>
-            <button className="delete"></button>
-            Copied on clipboard!
-          </div>
-          <div className="columns">
-            <div className="column is-12">
-              <p className="control">
-                <textarea
-                  readOnly
-                  ref="output"
-                  onFocus={this.selectOutput.bind(this)}
-                  className="textarea"
-                  rows={this.state.output.split('\n').length}
-                  value={this.state.output}
-                  style={{
-                    height: this.state.output.split('\n').length*50+'px',
-                    width: '100%', overflow: 'hidden'
-                  }}></textarea>
-              </p>
+            <div
+              ref="note"
+              className="notification is-primary"
+              style={{
+                opacity: this.state.opacity,
+                display: (this.state.copied) ? 'inherit' : 'none'
+              }}>
+              <button className="delete"></button>
+              Copied on clipboard!
+            </div>
+            <div className="columns">
+              <div className="column is-12">
+                <p className="control">
+                  <textarea
+                    readOnly
+                    ref="output"
+                    onFocus={this.selectOutput.bind(this)}
+                    className="textarea"
+                    rows={this.state.output.split('\n').length}
+                    value={this.state.output}
+                    style={{
+                      height: this.state.output.split('\n').length*50+'px',
+                      width: '100%', overflow: 'hidden'
+                    }}></textarea>
+                </p>
+              </div>
             </div>
           </div>
         </div>
