@@ -10,11 +10,14 @@ class Tab extends Component {
         <td className="column is-10">
           <a href={this.props.tab.url} target="_blank">{this.props.tab.title}</a>
         </td>
-        <td className="column is-1">
-          <i className="fa fa-times"></i>
+        <td className="column is-1" onClick={this.remove.bind(this)}>
+          <label><i className="fa fa-times"></i></label>
         </td>
       </tr>
     );
+  }
+  remove() {
+    this.props.rem(this.props.seq);
   }
 }
 export default Tab;
