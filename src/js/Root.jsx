@@ -79,6 +79,7 @@ class Root extends Component {
     _.map(this.state.tabs, (tab) => {
       let row = '- <img src="'+tab.favIconUrl+'" width="16px" height="16px"> ['+tab.title+']('+tab.url+')';
       rows.push(row);
+      if (tab.comment) rows.push('    - ' + tab.comment);
     });
     this.setState({output: rows.join("\n")});
   }
