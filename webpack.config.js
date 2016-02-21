@@ -1,3 +1,11 @@
+'use strict';
+let webpack = require('webpack');
+let plugins = [];
+process.argv.forEach((val) => {
+  if (val == '--release') plugins.push(new webpack.optimize.UglifyJsPlugin({
+    mangle: true, compress: {warnings: false}
+  }));
+});
 module.exports = {
   entry: './src/js/app.jsx',
   output: {filename:'dist/js/app.js'},
@@ -13,5 +21,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-  }
+  },
+  plugins: plugins
 };

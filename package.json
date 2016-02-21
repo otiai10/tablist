@@ -25,7 +25,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "release": "rm -r release && webpack --release && mkdir -p release/pkg && cp manifest.json release/pkg/ && cp -r dist release/pkg/ && zip -r release/tablist.zip release/pkg"
   },
   "author": "otiai10",
   "license": "MIT"
