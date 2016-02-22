@@ -20,23 +20,40 @@ class Root extends Component {
           <h1 className="title">Tab Archive</h1>
         </header>
         <div className="columns">
+
           <div className="column is-8">
+
             <div className="columns">
               <div className="column is-12">
                 <button className="button" onClick={this.removeDup.bind(this)}>Remove Duplicated URL</button>
               </div>
             </div>
             <TabList com={this.comment.bind(this)} rem={this.remove.bind(this)} tabs={this.state.tabs} />
+
           </div>
+
           <div className="column is-4">
             <div className="columns">
-              <div className="column is-12">
-                <button className="button" onClick={this.toMarkdown.bind(this)}>Get Markdown</button>
+
+              <div className="column is-5">
+                <span className="select">
+                  <select>
+                    <option>Markdown</option>
+                    <option>HTML</option>
+                  </select>
+                </span>
+              </div>
+
+              <div className="column is-2">
+                <button className="button" onClick={this.toMarkdown.bind(this)}><i className="fa fa-code"></i></button>
+              </div>
+              <div className="column is-5">
                 { (this.state.output == '') ? null : <button className="button" onClick={this.clipcopy.bind(this)}>
-                    <i className="fa fa-paperclip"></i>
-                  </button> }
+                  <i className="fa fa-paperclip"></i>
+                </button> }
               </div>
             </div>
+
             <div
               ref="note"
               className="notification is-primary"
@@ -58,8 +75,9 @@ class Root extends Component {
                     rows={this.state.output.split('\n').length}
                     value={this.state.output}
                     style={{
-                      height: this.state.output.split('\n').length*50+'px',
-                      width: '100%', overflow: 'hidden'
+                      height: this.state.output.split('\n').length*100+'px',
+                      width: '100%',
+                      overflowX: 'hidden', overflowY: 'scroll'
                     }}></textarea>
                 </p>
               </div>
