@@ -9,8 +9,11 @@ class List extends Component {
     return (
       <div>
         <div className="columns">
-          <div className="column is-12">
+          <div className="column is-4">
             <button className="button" onClick={this.props.removeDup}>Remove Duplicated URL</button>
+          </div>
+          <div className="column is-4">
+            <button className="button" onClick={this.props.sweep}>Sweep these tabs from browser</button>
           </div>
         </div>
 

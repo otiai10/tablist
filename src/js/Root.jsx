@@ -14,6 +14,9 @@ class Root extends Component {
       this.setState({tabs: tabs});
     });
   }
+  componentDidUpdate() {
+    document.title = document.title.replace(/[0-9]+/, this.state.tabs.length);
+  }
   render() {
     return (
       <div className="content">
@@ -22,7 +25,7 @@ class Root extends Component {
         </header>
         <div className="columns">
           <div className="column is-8">
-            <List tabs={this.state.tabs} com={this.comment.bind(this)} rem={this.remove.bind(this)} removeDup={this.removeDup.bind(this)} />
+            <List sweep={this.sweep.bind(this)} tabs={this.state.tabs} com={this.comment.bind(this)} rem={this.remove.bind(this)} removeDup={this.removeDup.bind(this)} />
           </div>
           <div className="column is-4">
             <Output tabs={this.state.tabs} />
@@ -45,6 +48,14 @@ class Root extends Component {
   comment(i, comment) {
     this.state.tabs[i].comment = comment;
     this.setState({tabs: this.state.tabs});
+  }
+  sweep() {
+    this.state.tabs.map((tab) => {
+      chrome.tabs.query({url: tab.url}, (tabs) => {
+        let ids = tabs.map((t) => { return t.id; });
+        chrome.tabs.remove(ids || []);
+      });
+    })
   }
 }
 export default Root;
