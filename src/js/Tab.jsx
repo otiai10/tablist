@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+const ENTER_KEY = 13;
+
 class Tab extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ class Tab extends Component {
         </td>
         <td className="column is-2" >
           <div className="columns">
-            <label className="column is-3" onClick={this.toggleCommentInput.bind(this)}><i className="fa fa-comment-o"></i></label>
+            <label ref="commentTrigger" className="column is-3" tabIndex={this.props.seq + 1} onKeyDown={this.commentShortCut.bind(this)} onClick={this.toggleCommentInput.bind(this)}><i className="fa fa-comment-o"></i></label>
             <label className="column is-3 is-offset-2" onClick={this.remove.bind(this)}><i className="fa fa-times"></i></label>
           </div>
         </td>
@@ -37,6 +39,9 @@ class Tab extends Component {
   }
   remove() {
     this.props.rem(this.props.seq);
+  }
+  commentShortCut(ev) {
+    if (ev.which == ENTER_KEY) this.toggleCommentInput();
   }
   toggleCommentInput() {
     let show = !this.state.showCommentInput;
@@ -47,9 +52,9 @@ class Tab extends Component {
     });
   }
   forInput(ev) {
-    let ENTER = 13;
-    if (ev.which == ENTER) {
+    if (ev.which == ENTER_KEY) {
       this.commit(ev);
+      this.refs.commentTrigger.focus();
     }
   }
   commit(ev, close = true) {
